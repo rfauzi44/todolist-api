@@ -3,7 +3,7 @@ package todo
 import (
 	"fmt"
 
-	"github.com/rfauzi44/todolist-api/database/orm/model"
+	"github.com/rfauzi44/todolist-api/model"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 )
@@ -83,7 +83,7 @@ func (r *todo_repo) Delete(id int) (map[string]interface{}, error) {
 func (r *todo_repo) Sort(activity_group_id int) (*model.Todos, error) {
 	var data model.Todos
 
-	err := r.database.Find(&data, "activity_id = ?", activity_group_id).Error
+	err := r.database.Find(&data, "activity_group_id = ?", activity_group_id).Error
 	if err != nil {
 		return nil, err
 	}

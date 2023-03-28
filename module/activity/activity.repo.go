@@ -3,7 +3,7 @@ package activity
 import (
 	"fmt"
 
-	"github.com/rfauzi44/todolist-api/database/orm/model"
+	"github.com/rfauzi44/todolist-api/model"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 )

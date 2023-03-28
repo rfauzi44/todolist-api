@@ -5,7 +5,7 @@ import (
 	"log"
 
 	"github.com/joho/godotenv"
-	"github.com/rfauzi44/todolist-api/database/orm/model"
+	"github.com/rfauzi44/todolist-api/model"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )

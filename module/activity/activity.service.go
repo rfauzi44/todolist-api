@@ -3,9 +3,9 @@ package activity
 import (
 	"fmt"
 
-	"github.com/rfauzi44/todolist-api/database/orm/model"
 	"github.com/rfauzi44/todolist-api/interfaces"
 	"github.com/rfauzi44/todolist-api/lib"
+	"github.com/rfauzi44/todolist-api/model"
 )
 
 type activity_service struct {

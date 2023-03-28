@@ -2,8 +2,8 @@ package main
 
 import (
 	"github.com/gorilla/mux"
-	"github.com/rfauzi44/todov2/modules/v1/activity"
-	"github.com/rfauzi44/todov2/modules/v1/todo"
+	"github.com/rfauzi44/todolist-api/module/activity"
+	"github.com/rfauzi44/todolist-api/module/todo"
 )
 
 func NewApp() (*mux.Router, error) {

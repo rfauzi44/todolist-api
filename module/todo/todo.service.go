@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/rfauzi44/todolist-api/database/orm/model"
 	"github.com/rfauzi44/todolist-api/interfaces"
 	"github.com/rfauzi44/todolist-api/lib"
+	"github.com/rfauzi44/todolist-api/model"
 )
 
 type todo_service struct {

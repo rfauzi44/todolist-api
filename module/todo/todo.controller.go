@@ -7,9 +7,9 @@ import (
 
 	"github.com/asaskevich/govalidator"
 	"github.com/gorilla/mux"
-	"github.com/rfauzi44/todolist-api/database/orm/model"
 	"github.com/rfauzi44/todolist-api/interfaces"
 	"github.com/rfauzi44/todolist-api/lib"
+	"github.com/rfauzi44/todolist-api/model"
 )
 
 type todo_controller struct {
@@ -37,6 +37,13 @@ func (c *todo_controller) Add(w http.ResponseWriter, r *http.Request) {
 		if err.Error() == "title: non zero value required" {
 
 			lib.NewRes("title cannot be null", 400, true).Send(w)
+			return
+
+		}
+
+		if err.Error() == "activity_group_id: non zero value required" {
+
+			lib.NewRes("activity_group_id cannot be null", 400, true).Send(w)
 			return
 
 		}

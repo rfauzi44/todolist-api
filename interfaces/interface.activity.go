@@ -1,7 +1,7 @@
 package interfaces
 
 import (
-	"github.com/rfauzi44/todolist-api/database/orm/model"
+	"github.com/rfauzi44/todolist-api/model"
 	"github.com/rfauzi44/todolist-api/lib"
 )
 
