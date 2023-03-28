@@ -31,7 +31,8 @@ func (r *activity_repo) Add(data *model.Activity) (*model.Activity, error) {
 
 func (r *activity_repo) GetAll() (*model.Activities, error) {
 	var data model.Activities
-	err := r.database.Find(&data).Error
+	session := r.database.Session(&gorm.Session{PrepareStmt: true})
+	err := session.Find(&data).Error
 	if err != nil {
 		return nil, err
 	}
@@ -42,8 +43,9 @@ func (r *activity_repo) GetAll() (*model.Activities, error) {
 
 func (r *activity_repo) GetById(id int) (*model.Activity, error) {
 	var data model.Activity
+	session := r.database.Session(&gorm.Session{PrepareStmt: true})
 
-	err := r.database.First(&data, "activity_id = ?", id).Error
+	err := session.First(&data, "activity_id = ?", id).Error
 	if err != nil {
 		return nil, err
 	}

@@ -31,7 +31,8 @@ func (r *todo_repo) Add(data *model.Todo) (*model.Todo, error) {
 
 func (r *todo_repo) GetAll() (*model.Todos, error) {
 	var data model.Todos
-	err := r.database.Find(&data).Error
+	session := r.database.Session(&gorm.Session{PrepareStmt: true})
+	err := session.Find(&data).Error
 	if err != nil {
 		return nil, err
 	}
@@ -42,8 +43,9 @@ func (r *todo_repo) GetAll() (*model.Todos, error) {
 
 func (r *todo_repo) GetById(id int) (*model.Todo, error) {
 	var data model.Todo
+	session := r.database.Session(&gorm.Session{PrepareStmt: true})
 
-	err := r.database.First(&data, "todo_id = ?", id).Error
+	err := session.First(&data, "todo_id = ?", id).Error
 	if err != nil {
 		return nil, err
 	}
@@ -82,8 +84,9 @@ func (r *todo_repo) Delete(id int) (map[string]interface{}, error) {
 
 func (r *todo_repo) Sort(activity_group_id int) (*model.Todos, error) {
 	var data model.Todos
+	session := r.database.Session(&gorm.Session{PrepareStmt: true})
 
-	err := r.database.Find(&data, "activity_group_id = ?", activity_group_id).Error
+	err := session.Find(&data, "activity_group_id = ?", activity_group_id).Error
 	if err != nil {
 		return nil, err
 	}
