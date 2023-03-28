@@ -19,8 +19,16 @@ func NewRepo(db *gorm.DB) *todo_repo {
 
 func (r *todo_repo) Add(data *model.Todo) (*model.Todo, error) {
 
-	err := r.database.Create(data).Error
+	session := r.database.Session(&gorm.Session{PrepareStmt: true})
+	tx := session.Begin()
 
+	err := tx.Create(data).Error
+	if err != nil {
+		tx.Rollback()
+		return nil, err
+	}
+
+	err = tx.Commit().Error
 	if err != nil {
 		return nil, err
 	}
@@ -71,12 +79,22 @@ func (r *todo_repo) Update(id int, data *model.Todo) (*model.Todo, error) {
 
 func (r *todo_repo) Delete(id int) (map[string]interface{}, error) {
 
-	result := r.database.Delete(&model.Todo{}, id)
+	session := r.database.Session(&gorm.Session{PrepareStmt: true})
+	tx := session.Begin()
+
+	result := tx.Delete(&model.Todo{}, id)
 	if result.Error != nil {
+		tx.Rollback()
 		return nil, result.Error
 	}
 	if result.RowsAffected == 0 {
+		tx.Rollback()
 		return nil, fmt.Errorf("record not found")
+	}
+
+	if err := tx.Commit().Error; err != nil {
+		tx.Rollback()
+		return nil, err
 	}
 
 	return map[string]interface{}{}, nil
