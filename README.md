@@ -1,6 +1,6 @@
 # Todolist
 
-Simple todolist with Gorilla Mux and MySQL. This App is submission for Backend API Golang Devcode Challenge. Make your list for various activity.
+Simple todolist with Gorilla Mux and MySQL. This App is submission for Backend API Golang Devcode Challenge. Pass all the scenario tests.
 
 ## 🔥 Showcase
 - [Sertifikat Devcode Challenge](https://devcode.gethired.id/job/BPD038)
